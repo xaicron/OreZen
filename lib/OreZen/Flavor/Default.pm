@@ -19,6 +19,14 @@ __DATA__
 </head>
 <body>
 <?= $content ?>
+<div id="help">
+<p>j or &rarr;: next</p>
+<p>k or &larr;: prev</p>
+<p>h or &uarr;: list</p>
+<p>l or &darr;: return</p>
+<p>o or &crarr;: open</p>
+<p>? or /: toggle this help</p>
+</div>
 <script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
 <script type="text/javascript" src="static/js/prettify.js"></script>
 <script type="text/javascript" src="static/js/slide.js"></script>
@@ -74,6 +82,7 @@ var KEYBORD = {
     K     : 75,
     L     : 76,
     O     : 79,
+    Help  : 191, // ? or /
 };
 document.onkeydown = function(e) {
     if (!e) {
@@ -93,7 +102,7 @@ document.onkeydown = function(e) {
                 "class": slides[i].className,
                 "click": (function(page) {
                     return function() {
-                        location.href = '#p'+page;
+                        location.hash = page;
                         location.reload();
                     }
                 })(i),
@@ -132,11 +141,14 @@ document.onkeydown = function(e) {
         listView = false;
         stash[current].click();
     }
+    else if (key === KEYBORD.Help) {
+        toggleHelp();
+    }
 };
 
 setTimeout(function(){
     var matched;
-    if (matched = location.hash.match(/^#p(\d+)$/)){
+    if (matched = location.hash.match(/^#(\d+)$/)){
         current = +matched[1];
         for (var i = 0; i < current && slides[i]; i++){
             replaceClass(slides[i], [NC, VC], PC);
@@ -152,12 +164,12 @@ setTimeout(function(){
 function next() {
     replaceClass(slides[current++], [NC, VC], PC);
     replaceClass(slides[current], [PC, NC], VC);
-    location.hash = 'p' + current;
+    location.hash = current;
 }
 function prev() {
     replaceClass(slides[current--], [PC, VC], NC);
     replaceClass(slides[current], [PC, NC], VC);
-    location.hash = 'p' + current;
+    location.hash = current;
 }
 function nextlist() {
     removeClass(slides[current++], 'focus');
@@ -201,6 +213,12 @@ function replaceClass(elem, from, to) {
     removeClass(elem, from);
     addClass(elem, to);
 }
+
+var helpElem = document.getElementById('help');
+function toggleHelp() {
+    helpElem.style.display = (helpElem.style.display === 'none') ? 'block' : 'none';
+}
+
 })();
 @@ static/css/style.css
 /* reset styles */
@@ -267,6 +285,23 @@ ul {
 ol {
     list-style-type: decimal;
     font-size: 80%;
+}
+
+#help {
+    background-color: #000;
+    color: #fff;
+    font-size: 50%;
+    position: absolute;
+    right: 3%;
+    bottom: 3%;
+    opacity: 0.7;
+    font-weight: bold;
+    display: none;
+}
+
+#help p {
+    font-family: monospace;
+    opacity: 1;
 }
 
 .next {
