@@ -207,6 +207,7 @@ function replaceClass(elem, from, to) {
 body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, article { 
     margin:0;
     padding:0;
+    font-size-adjust: 0.5;
 }
 
 body {
@@ -237,13 +238,12 @@ body > section {
 }
 
 h1, h2, h3 {
-    text-shadow: 1px 1px 1px #000;
+    text-shadow: 3px 3px 5px #000;
 }
 
 h1 {
     font-size: 150%;
     border-bottom: 2px dashed #fff;
-    text-shadow: 2px 2px 5px #333;
 }
 
 h2 {
