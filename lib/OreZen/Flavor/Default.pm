@@ -19,6 +19,7 @@ __DATA__
 </head>
 <body>
 <?= $content ?>
+<div id="page"></div>
 <div id="help">
 <p>j or &rarr;: next</p>
 <p>k or &larr;: prev</p>
@@ -44,10 +45,9 @@ __DATA__
 })();
 @@ static/js/slide.js
 (function() {
-
 var width = 0;
 var listView = false;
-var timmer = setInterval(function(){
+var fontTimmer = setInterval(function(){
     if (!listView && width != document.documentElement.clientWidth) {
         width = document.documentElement.clientWidth;
         document.body.style.fontSize = width / 5 + '%';
@@ -181,7 +181,6 @@ function prevlist() {
     addClass(slides[current], 'focus');
     location.hash = current;
 }
-
 function removeClass(elem, targets) {
     if (typeof targets !== "object") { // non-array
         targets = [targets];
@@ -218,6 +217,11 @@ var helpElem = document.getElementById('help');
 function toggleHelp() {
     helpElem.style.display = (helpElem.style.display === 'none') ? 'block' : 'none';
 }
+
+var pageElem = document.getElementById('page');
+var countTimer = setInterval(function(){
+    pageElem.innerHTML = current + 1 + '/' + count;
+}, 100);
 
 })();
 @@ static/css/style.css
@@ -302,6 +306,18 @@ ol {
 #help p {
     font-family: monospace;
     opacity: 1;
+}
+
+#page {
+    color: #fff;
+    position: absolute;
+    font-size: 80%;
+    right: 6%;
+    bottom: 3%;
+    font-weight: bold;
+    display: block;
+    text-shadow: 3px 3px 5px #000;
+    opacity: 0.7;
 }
 
 .next {
