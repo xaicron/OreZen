@@ -68,10 +68,12 @@ var KEYBORD = {
     Up    : 38,
     Right : 39,
     Down  : 40,
+    Enter : 13,
     H     : 72,
     J     : 74,
     K     : 75,
     L     : 76,
+    O     : 79,
 };
 document.onkeydown = function(e) {
     if (!e) {
@@ -126,7 +128,11 @@ document.onkeydown = function(e) {
             }
         }, 500);
     }
-}
+    else if ((key === KEYBORD.O || key === KEYBORD.Enter) && listView === true) {
+        listView = false;
+        stash[current].click();
+    }
+};
 
 setTimeout(function(){
     var matched;
