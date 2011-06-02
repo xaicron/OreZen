@@ -392,6 +392,7 @@ $wiki->add_block(
             return $line, $ret;
         },
         enabled_escape => 1,
+        foldline       => 1,
     },
     'raw-html' => +{
         start => sub {
