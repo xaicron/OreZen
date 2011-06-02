@@ -78,13 +78,12 @@ document.onkeydown = function(e) {
         e = window.event;
     }
     var key = e.keyCode;
-    if ((key === KEYBORD.J || key === KEYBORD.Right) && slides[current+1] && listView === false) {
-        next();
-        return false;
+    console.log(key);
+    if ((key === KEYBORD.J || key === KEYBORD.Right) && slides[current+1]) {
+        listView === false ? next() : nextlist();
     }
-    else if ((key === KEYBORD.K || key === KEYBORD.Left) && slides[current-1] && listView === false) {
-        prev();
-        return false;
+    else if ((key === KEYBORD.K || key === KEYBORD.Left) && slides[current-1]) {
+        listView === false ? prev() : prevlist();
     }
     else if ((key === KEYBORD.H || key === KEYBORD.Up) && listView === false) {
         for (var i = 0, l = slides.length; i < l; i++) {
@@ -154,9 +153,19 @@ function prev() {
     replaceClass(slides[current], [PC, NC], VC);
     location.hash = 'p' + current;
 }
+function nextlist() {
+    removeClass(slides[current++], 'focus');
+    addClass(slides[current], 'focus');
+    location.hash = current;
+}
+function prevlist() {
+    removeClass(slides[current--], 'focus');
+    addClass(slides[current], 'focus');
+    location.hash = current;
+}
 
 function removeClass(elem, targets) {
-    if (!typeof targets === "object") { // non-array
+    if (typeof targets !== "object") { // non-array
         targets = [targets];
     }
     var targetMap = {};
@@ -305,6 +314,7 @@ ol {
     border-radius: 20px;
     position: relative;
     border: 1px solid #000;
+    overflow: hidden;
     -moz-transition: opacity 0.3s ease-in-out;
     -webkit-transition: opacity 0.3s ease-in-out;
     -o-transition: opacity 0.3s ease-in-out;
