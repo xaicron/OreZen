@@ -106,7 +106,7 @@ document.onkeydown = function(e) {
                 "class": slides[i].className,
                 "click": (function(page) {
                     return function() {
-                        location.hash = page;
+                        location.hash = page + 1;
                         location.reload();
                     }
                 })(i),
@@ -155,7 +155,7 @@ document.onkeydown = function(e) {
 setTimeout(function(){
     var matched;
     if (matched = location.hash.match(/^#(\d+)$/)){
-        current = +matched[1];
+        current = +matched[1] - 1;
         for (var i = 0; i < current && slides[i]; i++){
             replaceClass(slides[i], [NC, VC], PC);
         }
@@ -170,22 +170,26 @@ setTimeout(function(){
 function next() {
     replaceClass(slides[current++], [NC, VC], PC);
     replaceClass(slides[current], [PC, NC], VC);
-    location.hash = current;
+    location.hash = current + 1;
 }
 function prev() {
     replaceClass(slides[current--], [PC, VC], NC);
     replaceClass(slides[current], [PC, NC], VC);
-    location.hash = current;
+    location.hash = current + 1;
 }
 function nextlist() {
-    removeClass(slides[current++], 'focus');
+    removeClass(slides[current], 'focus');
+    stash[current++].class = PC;
     addClass(slides[current], 'focus');
-    location.hash = current;
+    stash[current].class = VC;
+    location.hash = current + 1;
 }
 function prevlist() {
-    removeClass(slides[current--], 'focus');
+    removeClass(slides[current], 'focus');
+    stash[current--].class = NC;
     addClass(slides[current], 'focus');
-    location.hash = current;
+    stash[current].class = VC;
+    location.hash = current + 1;
 }
 function removeClass(elem, targets) {
     if (typeof targets !== "object") { // non-array
