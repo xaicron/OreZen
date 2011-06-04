@@ -19,8 +19,8 @@ $wiki->add_inline(
     # [url name] or url
     'link' => sub {
         my $line = shift;
-        $line =~ s!\[([^\s]+) ([^\]]+)\]|\[([^\[]+)\]!
-            my $url  = $1 || $3;
+        $line =~ s!\[([^\s]+) ([^\]]+)\]|\[([^\[]+)\]|([^[]+)!
+            my $url  = $1 || $3 || $4;
             my $text = $2;
             if (index($url, '#') == 0) {
                 $url = sprintf qq(<a href="#%s">%s</a>), uri_escape_utf8(substr($url, 1)), $text ? $text : $url;
