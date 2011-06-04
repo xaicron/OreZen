@@ -46,12 +46,12 @@ $wiki->add_inline(
     },
     "'''~'''" => sub {
         my $line = shift;
-        $line =~ s#'''([^']+)'''#<strong>$1</strong>#g;
+        $line =~ s#'''((?:(?!''').)*)'''#<strong>$1</strong>#g;
         return $line;
     },
     "''~''" => sub {
         my $line = shift;
-        $line =~ s#''([^']+)''#<em>$1</em>#g;
+        $line =~ s#''((?:(?!'').)*)''#<em>$1</em>#g;
         return $line;
     },
 );
