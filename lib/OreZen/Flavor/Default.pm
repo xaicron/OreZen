@@ -236,10 +236,9 @@ var countTimer = setInterval(function(){
 })();
 @@ static/css/style.css
 /* reset styles */
-body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, article { 
-    margin:0;
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,article,section {
     padding:0;
-    font-size-adjust: 0.5;
+    margin:0;
 }
 
 body {
@@ -276,13 +275,16 @@ h1, h2, h3 {
 h1 {
     font-size: 150%;
     border-bottom: 2px dashed #fff;
+    padding-left: 0.2em;
 }
 
 h2 {
+    margin: 0.3em;
     font-size: 120%;
 }
 
 h3 {
+    margin: 0.4em;
     font-size: 100%;
 }
 
@@ -294,11 +296,17 @@ p {
 ul {
     list-style-type: disc;
     font-size: 80%;
+    margin-left: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 ol {
     list-style-type: decimal;
     font-size: 80%;
+    margin-left: 2em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 #help {
@@ -321,8 +329,8 @@ ol {
 #page {
     color: #fff;
     position: absolute;
-    font-size: 80%;
-    right: 6%;
+    font-size: 60%;
+    right: 6.5%;
     bottom: 3%;
     font-weight: bold;
     display: block;
@@ -381,7 +389,7 @@ ol {
     border-radius: 20px;
     position: relative;
     border: 1px solid #000;
-    overflow: hidden;
+/*    overflow: hidden; */
     -moz-transition: opacity 0.3s ease-in-out;
     -webkit-transition: opacity 0.3s ease-in-out;
     -o-transition: opacity 0.3s ease-in-out;
@@ -423,7 +431,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     color: #000;
-    width: 92%;
+    width: 94%;
     font-size: 80%;
 }
 
