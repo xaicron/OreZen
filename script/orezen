@@ -103,7 +103,7 @@ orezen
 @@@@
 <div style="text-align: center">
 @@@@
-= How to <span style="color: red">orezen</span> syntax =
+= How to %%red:orezen%% syntax =
 @@@@
 </div>
 @@@@
@@ -295,6 +295,17 @@ image link
 }}}
 
 ''em word''
+
+<<<
+
+>>>
+= color =
+
+{{{
+here is %%red:red%%
+}}}
+
+here is %%red:red%%
 
 <<<
 
