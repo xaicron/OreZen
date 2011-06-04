@@ -225,7 +225,7 @@ function replaceClass(elem, from, to) {
 
 var helpElem = document.getElementById('help');
 function toggleHelp() {
-    helpElem.style.display = (helpElem.style.display === 'none') ? 'block' : 'none';
+    helpElem.style.display = (helpElem.style.display !== 'block') ? 'block' : 'none';
 }
 
 var pageElem = document.getElementById('page');
