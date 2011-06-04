@@ -115,6 +115,7 @@ document.onkeydown = function(e) {
             replaceClass(slides[i], [NC, PC, VC, 'focus'], 'invisible');
         }
         setTimeout(function() {
+            width = null;
             document.body.style.fontSize = '3%';
             for (var i = 0, l = imgTags.length; i < l; i++) {
                 imgTags[i].style.maxWidth = width * 0.15 * 0.8 + 'px';
