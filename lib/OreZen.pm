@@ -322,10 +322,10 @@ $wiki->add_block(
                 }
                 elsif ($stash->{indent} > $current_indent) {
                     my @end_tags;
-                    while (my $indent = pop @{$stash->{_indent}}) {
-                        my $tag = pop @{$stash->{_start_tag}};
+                    while (defined (my $indent = $stash->{_indent}->[-1])) {
                         if ($indent >= $current_indent) {
-                            push @end_tags, $tag;
+                            push @end_tags, pop @{$stash->{_start_tag}};
+                            pop @{$stash->{_indent}};
                         }
                         else {
                             last;
@@ -361,6 +361,7 @@ $wiki->add_block(
             return $line, $ret;
         },
         foldline => 1,
+        enabled_inline => 1,
     },
     '>>> ~ <<<' => +{
         start => sub {
