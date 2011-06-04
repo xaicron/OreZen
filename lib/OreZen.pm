@@ -19,16 +19,24 @@ $wiki->add_inline(
     # [url name] or url
     'link' => sub {
         my $line = shift;
-        $line =~ s#\[([^\s]+) ([^\]]+)\]|([^\[]+)#
+        $line =~ s!\[([^\s]+) ([^\]]+)\]|\[([^\[]+)\]!
             my $url  = $1 || $3;
             my $text = $2;
-            my $finder = URI::Find::UTF8->new(sub {
-                my ($uri, $orig_uri) = @_;
-                return sprintf qq(<a href="%s">%s</a>), $uri, $text ? $text : $orig_uri;
-            });
-            $finder->find(\$url);
+            if (index($url, '#') == 0) {
+                $url = sprintf qq(<a href="#%s">%s</a>), uri_escape_utf8(substr($url, 1)), $text ? $text : $url;
+            }
+            elsif (index($url, 'i:') == 0) {
+                $url = sprintf qq(<img src="%s" alt="%s" />), substr($url, 2), $text ? $text : '';
+            }
+            else {
+                my $finder = URI::Find::UTF8->new(sub {
+                    my ($uri, $orig_uri) = @_;
+                    return sprintf qq(<a href="%s">%s</a>), $uri, $text ? $text : $orig_uri;
+                });
+                $finder->find(\$url);
+            }
             $url;
-        #eg;
+        !eg;
         return $line;
     },
     '~~del~~' => sub {
