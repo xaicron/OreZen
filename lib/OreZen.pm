@@ -54,6 +54,11 @@ $wiki->add_inline(
         $line =~ s#''((?:(?!'').)*)''#<em>$1</em>#g;
         return $line;
     },
+    'color' => sub {
+        my $line = shift;
+        $line =~ s#\%\%([^:]+):((?:(?!\%\%).)*)\%\%#<span style="color: $1">$2</span>#g;
+        return $line;
+    }
 );
 
 $wiki->add_block(
