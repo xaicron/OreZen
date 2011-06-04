@@ -100,19 +100,145 @@ print "done.\n";
 orezen
 
 >>>
-= section1 =
+@@@@
+<div style="text-align: center">
+@@@@
+= How to <span style="color: red">orezen</span> syntax =
+@@@@
+</div>
+@@@@
 
-{{{
-hello, orezen
-}}}
+ - section
+ - header
+ - code
+ - link
+ - list
+ - table
+ - hr
+ - del
+ - strong
+ - em
+ - comment section
+ - free space
 
-http://example.com
 <<<
 
 >>>
-= section2 =
+= section =
 
-are you ok?
+{{{
+>>>
+...
+<<<
+}}}
+
+<<<
+
+>>>
+= header =
+
+{{{
+= h1 =
+== h2 ==
+=== h3 ===
+}}}
+
+= h1 =
+== h2 ==
+=== h3 ===
+
+<<<
+
+>>>
+= code =
+
+@@@@
+<pre>
+{{{
+write here any code
+}}}
+</pre>
+@@@@
+
+<<<
+
+>>>
+= link =
+
+bare link
+
+{{{
+http://example.com/
+}}}
+
+http://example.com/
+
+----
+
+namaed link
+
+{{{
+[http://example.com/ example.com]
+}}}
+
+[http://example.com/ example.com]
+
+
+----
+
+image link
+
+{{{
+[i:image/foo.jpg]
+}}}
+
+[i:image/OP2.jpg]
+
+<<<
+
+>>>
+= list =
+
+== standard ==
+
+{{{
+ - foo
+ - bar
+  - baz
+
+ 1. hoge
+ 1. fuga
+ 1. piyo
+}}}
+
+ - foo
+ - bar
+  - baz
+
+ 1. hoge
+ 1. fuga
+ 1. piyo
+
+----
+
+== mixed ==
+
+{{{
+ - foo
+  - bar
+   1. baz
+    1. hoge
+  - fuga
+ - piyo
+}}}
+
+ - foo
+  - bar
+   1. baz
+    1. hoge
+  - fuga
+ - piyo
+
 <<<
 
 >>>
@@ -125,5 +251,89 @@ are you ok?
 
 | *foo | *bar | *baz |
 | hoge | fuga | piyo |
+
+<<<
+
+>>>
+= hr =
+
+{{{
+----
+}}}
+
+----
+
+<<<
+
+>>>
+= del =
+
+{{{
+~~delete here~~
+}}}
+
+~~delete here~~
+
+<<<
+
+>>>
+= strong =
+
+{{{
+'''strong word'''
+}}}
+
+'''strong word'''
+
+<<<
+
+>>>
+= em =
+
+{{{
+''em word''
+}}}
+
+''em word''
+
+<<<
+
+>>>
+= free space =
+
+{{{
+@@@@
+<p>here is <strong>free</strong> space!</p>
+@@@@
+}}}
+
+@@@@
+<p>here is <strong>free</strong> space!</p>
+@@@@
+
+<<<
+
+>>>
+= comment section =
+
+{{{
+####
+here is comment section!
+####
+}}}
+
+####
+here is comment section!
+####
+
+<<<
+
+>>>
+
+@@@@
+<div style="text-align: center; font-size: 200%">
+fin.
+</div>
+@@@@
 
 <<<
