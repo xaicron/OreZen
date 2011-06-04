@@ -47,10 +47,14 @@ __DATA__
 (function() {
 var width = 0;
 var listView = false;
+var imgTags = document.getElementsByTagName('img');
 var fontTimmer = setInterval(function(){
     if (!listView && width != document.documentElement.clientWidth) {
         width = document.documentElement.clientWidth;
         document.body.style.fontSize = width / 5 + '%';
+        for (var i = 0, l = imgTags.length; i < l; i++) {
+            imgTags[i].style.maxWidth = width * 0.8 + 'px';
+        }
     }
 }, 100);
 
@@ -111,8 +115,10 @@ document.onkeydown = function(e) {
             replaceClass(slides[i], [NC, PC, VC, 'focus'], 'invisible');
         }
         setTimeout(function() {
-            width = 15;
-            document.body.style.fontSize = width / 5 + '%';
+            document.body.style.fontSize = '3%';
+            for (var i = 0, l = imgTags.length; i < l; i++) {
+                imgTags[i].style.maxWidth = width * 0.15 * 0.8 + 'px';
+            }
             listView = true;
             for (var i = 0, l = slides.length; i < l; i++) {
                 slides[i].addEventListener('click', stash[i].click, false);
