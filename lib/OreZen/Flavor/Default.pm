@@ -68,6 +68,7 @@ var LC = 'list';
 var articles = document.querySelectorAll('body > section');
 for (var i = 0, l = articles.length; i < l; i++) {
     var section = articles[i];
+    section.id = i + 1;
     var name = section.className || '';
     addClass(section, NC);
     slides.push(section);
@@ -115,6 +116,7 @@ document.onkeydown = function(e) {
             };
             replaceClass(slides[i], [NC, PC, VC, 'focus'], 'invisible');
         }
+        document.getElementById('page').style.display = 'none';
         setTimeout(function() {
             width = null;
             document.body.style.fontSize = '3%';
@@ -156,6 +158,7 @@ document.onkeydown = function(e) {
 
 setTimeout(function(){
     var matched;
+    document.getElementById('page').style.display = 'block';
     if (matched = location.hash.match(/^#(\d+)$/)){
         current = +matched[1] - 1;
         for (var i = 0; i < current && slides[i]; i++){
@@ -245,12 +248,11 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 
 body {
     background-color: #000;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    overflow:hidden;
 }
 
 body > section {
@@ -382,7 +384,7 @@ ol {
 .list {
     width: 15%;
     height: 20%;
-    margin: 1.5%;
+    margin: 1.3%;
     left: 0%;
     top: 0%;
     bottom: 0%;
