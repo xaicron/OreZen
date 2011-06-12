@@ -235,7 +235,7 @@ function toggleHelp() {
 
 var pageElem = document.getElementById('page');
 var countTimer = setInterval(function(){
-    pageElem.innerHTML = current + 1 + '/' + count;
+    pageElem.innerHTML = current + 1;
 }, 100);
 
 })();
