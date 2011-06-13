@@ -12,10 +12,10 @@ our $VERSION = '0.01';
 
 my $wiki = Text::Wiki::Lite->new;
 $wiki->add_inline(
-    q|~~del~~|      => inline(q|~~|, 'del'),
-    q|--ins--|      => inline(q|--|, 'ins'),
-    q|''em''|       => inline(q|''|, 'em'),
-    q|'''strong'''| => inline(q|'''|, 'strong'),
+    q|~~del~~|    => inline(q|~~|, 'del'),
+    q|--ins--|    => inline(q|--|, 'ins'),
+    q|//em//|     => inline(q|//|, 'em'),
+    q|''strong''| => inline(q|''|, 'strong'),
     'link'          => inline_link([
         qr#\[i:([^\s]+)\]# => sub {
             my $src = shift;
