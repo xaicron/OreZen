@@ -7,6 +7,7 @@ use Text::Wiki::Lite;
 use Text::Wiki::Lite::Helper::HTML;
 use URI::Escape;
 use Regexp::Common qw(URI);
+use HTML::Entities qw(encode_entities);
 
 our $VERSION = '0.01';
 
@@ -16,6 +17,7 @@ $wiki->add_inline(
     q|--ins--|    => inline(q|--|, 'ins'),
     q|//em//|     => inline(q|//|, 'em'),
     q|''strong''| => inline(q|''|, 'strong'),
+    q|{{code}}|   => inline(['{{', '}}'], 'code', sub { encode_entities shift }),
     'link'          => inline_link([
         qr#\[i:([^\s]+)\]# => sub {
             my $src = shift;
