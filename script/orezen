@@ -108,18 +108,20 @@ orezen
 </div>
 @@@@
 
- - section
- - header
- - code
- - link
- - list
- - table
- - hr
- - del
- - strong
- - em
- - comment section
- - free space
+- section
+- header
+- code
+- link
+- list
+- table
+- hr
+- del
+- strong
+- em
+- code
+- color
+- comment section
+- free space
 
 <<<
 
@@ -202,42 +204,42 @@ image link
 == standard ==
 
 {{{
- - foo
- - bar
-  - baz
+- foo
+- bar
+ - baz
 
- 1. hoge
- 1. fuga
- 1. piyo
+1. hoge
+1. fuga
+1. piyo
 }}}
 
- - foo
- - bar
-  - baz
+- foo
+- bar
+ - baz
 
- 1. hoge
- 1. fuga
- 1. piyo
+1. hoge
+1. fuga
+1. piyo
 
 ----
 
 == mixed ==
 
 {{{
- - foo
-  - bar
-   1. baz
-    1. hoge
-  - fuga
- - piyo
+- foo
+ - bar
+  1. baz
+   1. hoge
+ - fuga
+- piyo
 }}}
 
- - foo
-  - bar
-   1. baz
-    1. hoge
-  - fuga
- - piyo
+- foo
+ - bar
+  1. baz
+   1. hoge
+ - fuga
+- piyo
 
 <<<
 
@@ -280,10 +282,10 @@ image link
 = strong =
 
 {{{
-'''strong word'''
+''strong word''
 }}}
 
-'''strong word'''
+''strong word''
 
 <<<
 
@@ -291,10 +293,21 @@ image link
 = em =
 
 {{{
-''em word''
+//em word//
 }}}
 
-''em word''
+//em word//
+
+<<<
+
+>>>
+= code =
+
+{{{
+{{code}}
+}}}
+
+{{code}}
 
 <<<
 
