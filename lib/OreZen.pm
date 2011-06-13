@@ -3,17 +3,12 @@ package OreZen;
 use strict;
 use warnings;
 use 5.008_001;
-use URI::Escape;
-use URI::Find::UTF8;
 use Text::Wiki::Lite;
 use Text::Wiki::Lite::Helper::HTML;
+use URI::Escape;
+use Regexp::Common qw(URI);
 
 our $VERSION = '0.01';
-
-my $finder = URI::Find::UTF8->new(sub {
-    my ($uri, $orig_uri) = @_;
-    return sprintf qq(<a href="%s">%s</a>), $uri, $orig_uri;
-});
 
 my $wiki = Text::Wiki::Lite->new;
 $wiki->add_inline(
@@ -21,29 +16,28 @@ $wiki->add_inline(
     q|--ins--|      => inline(q|--|, 'ins'),
     q|''em''|       => inline(q|''|, 'em'),
     q|'''strong'''| => inline(q|'''|, 'strong'),
-    # [url name] or url
-    'link' => sub {
-        my $line = shift;
-        $line =~ s!\[([^\s]+) ([^\]]+)\]|\[([^\[]+)\]|([^[]+)!
-            my $url  = $1 || $3 || $4;
-            my $text = $2;
-            if (index($url, '#') == 0) {
-                $url = sprintf qq(<a href="#%s">%s</a>), uri_escape_utf8(substr($url, 1)), $text ? $text : $url;
-            }
-            elsif (index($url, 'i:') == 0) {
-                $url = sprintf qq(<img src="%s" alt="%s" />), substr($url, 2), $text ? $text : '';
-            }
-            else {
-                my $finder = URI::Find::UTF8->new(sub {
-                    my ($uri, $orig_uri) = @_;
-                    return sprintf qq(<a href="%s">%s</a>), $uri, $text ? $text : $orig_uri;
-                });
-                $finder->find(\$url);
-            }
-            $url;
-        !eg;
-        return $line;
-    },
+    'link'          => inline_link([
+        qr#\[i:([^\s]+)\]# => sub {
+            my $src = shift;
+            sprintf q|<img src="%s" alt="%1$s" title="%1$s" />|, $src;
+        },
+        qr#\[i:([^\s]+) ([^\]]+)\]# => sub {
+            my ($src, $title) = @_;
+            sprintf q|<img src="%s" alt="%s" title="%2$s" />|, $src, $title;
+        },
+        qr#\[($RE{URI}{HTTP})\]# => sub {
+            my ($uri) = @_;
+            sprintf q|<a href="%s">%s</a>|, $uri, $uri;
+        },
+        qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => sub {
+            my ($uri, $stuff) = @_;
+            sprintf q|<a href="%s">%s</a>|, $uri, $stuff;
+        },
+        qr#($RE{URI}{HTTP})# => sub {
+            my $uri = shift;
+            sprintf q|<a href="%s">%s</a>|, $uri, $uri;
+        },
+    ]),
     'color' => sub {
         my $line = shift;
         my $percent = quotemeta '%%';
