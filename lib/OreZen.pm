@@ -25,13 +25,9 @@ $wiki->add_inline(
         qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => q|<a href="%s">%1$s</a>|,
         qr#($RE{URI}{HTTP})#             => q|<a href="%s">%1$s</a>|,
     ]),
+    'color'       => inline_exclusive([
+        qr#%%([^:]+):((?:(?!%%).)*)%%# => q|<span style="color: %s">%s</span>|,
     ]),
-    'color' => sub {
-        my $line = shift;
-        my $percent = quotemeta '%%';
-        $line =~ s#$percent([^:]+):((?:(?!$percent).)*)$percent#<span style="color: $1">$2</span>#go;
-        return $line;
-    }
 );
 
 $wiki->add_block(
