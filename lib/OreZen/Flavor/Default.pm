@@ -259,7 +259,7 @@ body > section {
     position: absolute;
     top: 5%;
     bottom: 5%;
-    left: 5%;
+    left: 3%;
     background: #333;
     color: #fff;
     text-shadow: rgba(0,0,0,0.1) 2px 2px;
@@ -267,7 +267,7 @@ body > section {
     padding: 1%;
     height: 0%;
     overflow: auto;
-    width: 88%;
+    width: 92%;
     border-radius: 20px;
     opacity: 0;
 }
@@ -334,7 +334,7 @@ ol {
     color: #fff;
     position: absolute;
     font-size: 60%;
-    right: 6.5%;
+    right: 4.5%;
     bottom: 3%;
     font-weight: bold;
     display: block;
