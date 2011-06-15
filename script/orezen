@@ -247,12 +247,12 @@ image link
 = table =
 
 {{{
-| *foo | *bar | *baz |
-| hoge | fuga | piyo |
+|| *foo || *bar || *baz ||
+|| hoge || fuga || piyo ||
 }}}
 
-| *foo | *bar | *baz |
-| hoge | fuga | piyo |
+|| *foo || *bar || *baz ||
+|| hoge || fuga || piyo ||
 
 <<<
 
