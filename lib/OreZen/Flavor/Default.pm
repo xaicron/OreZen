@@ -29,9 +29,9 @@ __DATA__
 <p>o or &crarr;: open</p>
 <p>? or /: toggle this help</p>
 </div>
+<script type="text/javascript" src="static/js/slide.js"></script>
 <script type="text/javascript" src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
 <script type="text/javascript" src="static/js/prettify.js"></script>
-<script type="text/javascript" src="static/js/slide.js"></script>
 </body>
 <html>
 @@ static/js/prettify.js
