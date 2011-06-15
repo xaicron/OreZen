@@ -17,28 +17,14 @@ $wiki->add_inline(
     q|--ins--|    => inline(q|--|, 'ins'),
     q|//em//|     => inline(q|//|, 'em'),
     q|''strong''| => inline(q|''|, 'strong'),
-    q|{{code}}|   => inline(['{{', '}}'], 'code', sub { encode_entities shift }),
-    'link'          => inline_link([
-        qr#\[i:([^\s]+)\]# => sub {
-            my $src = shift;
-            sprintf q|<img src="%s" alt="%1$s" title="%1$s" />|, $src;
-        },
-        qr#\[i:([^\s]+) ([^\]]+)\]# => sub {
-            my ($src, $title) = @_;
-            sprintf q|<img src="%s" alt="%s" title="%2$s" />|, $src, $title;
-        },
-        qr#\[($RE{URI}{HTTP})\]# => sub {
-            my ($uri) = @_;
-            sprintf q|<a href="%s">%s</a>|, $uri, $uri;
-        },
-        qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => sub {
-            my ($uri, $stuff) = @_;
-            sprintf q|<a href="%s">%s</a>|, $uri, $stuff;
-        },
-        qr#($RE{URI}{HTTP})# => sub {
-            my $uri = shift;
-            sprintf q|<a href="%s">%s</a>|, $uri, $uri;
-        },
+    q|{{code}}|   => inline(['{{', '}}'], 'code', sub { encode_entities shift, q|'"<>&| }),
+    'link'        => inline_exclusive([
+        qr#\[i:([^\s]+)\]#               => q|<img src="%s" alt="%1$s" title="%1$s" />|,
+        qr#\[i:([^\s]+) ([^\]]+)\]#      => q|<img src="%s" alt="%s" title="%2$s" />|,
+        qr#\[($RE{URI}{HTTP})\]#         => q|<a href="%s">%1$s</a>|,
+        qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => q|<a href="%s">%1$s</a>|,
+        qr#($RE{URI}{HTTP})#             => q|<a href="%s">%1$s</a>|,
+    ]),
     ]),
     'color' => sub {
         my $line = shift;
