@@ -72,15 +72,180 @@ __END__
 
 =head1 NAME
 
-OreZen -
+OreZen - oreore presentation generator
 
 =head1 SYNOPSIS
 
   use OreZen;
+  my $text = <<SYNTAX;
+  >>>
+  = h1 =
+  - foo
+  - bar
+    - baz
+  <<<
+  SYNTAX
+  
+  print OreZen->format($text);
 
 =head1 DESCRIPTION
 
-OreZen is
+OreZen is presentation generator and has wiki syntax.
+
+=head1 SYNTAX
+
+=head2 Inline
+
+=over
+
+=item auto link
+
+  http://example.com
+  # <a href="http://example.com">http://example.com</a>
+  
+  [http://example.com]
+  # <a href="http://example.com">http://example.com</a>
+  
+  [http://example.com example.com]
+  # <a href="http://example.com">example.com</a>
+  
+  [i:http://example.com/img.jpg]
+  # <img src="http://example.com/img.jpg" alt="http://example.com/img.jpg" title="http://example.com/img.jpg" />
+  
+  [i:http://example.com/img.jpg img.jpg]
+  # <img src="http://example.com/img.jpg" alt="img.jpg" title="img.jpg" />
+
+=item del
+
+  ~~del~~
+  # <del>del</del>
+
+=item ins
+
+  --ins--
+  # <ins>ins</ins>
+
+=item strong
+
+  **strong**
+  # <strong>strong</strong>
+
+=item em
+
+  ''em''
+  # <em>em</em>
+
+=item code
+
+  {{code}}
+  # <code>code</code>
+
+=item color
+
+  %%red:this is red%%
+  # <span style="color: red">this is red</span>
+
+=back
+
+=head2 Block
+
+=over
+
+=item section
+
+  >>>
+  new section
+  <<<
+  # <section>
+  # <p>new section</p>
+  # </section>
+
+=item h1, h2, h3
+
+  * h1
+  ** h2
+  *** h3
+  # <h1>h1</h1>
+  # <h2>h2</h2>
+  # <h3>h3</h3>
+
+  = h1 =
+  == h2 ==
+  === h3 ===
+  # <h1>h1</h1>
+  # <h2>h2</h2>
+  # <h3>h3</h3>
+
+=item pre
+
+  {{{
+  print "Hi!"
+  }}}
+  # <pre>
+  # print &quot;Hi!&quot;
+  # </pre>
+
+=item list
+
+  - foo
+  - bar
+    1. hoge
+    1. fuga
+  - baz
+  # <ul>
+  # <li>foo</li>
+  # <li>bar</li>
+  # <ol>
+  # <li>hoge</li>
+  # <li>fuga</li>
+  # </ol>
+  # <li>baz</li>
+  # </ul>
+
+=item hr
+
+  ----
+  # <hr />
+
+=item table
+
+  || *foo || *bar || *baz ||
+  || hoge || fuga || piyo ||
+  # <table>
+  # <tr>
+  # <th>foo</th>
+  # <th>bar</th>
+  # <th>baz</th>
+  # </tr>
+  # <tr>
+  # <td>hoge</td>
+  # <td>fuga</td>
+  # <td>piyo</td>
+  # </tr>
+  # </table>
+
+=item raw html
+
+  @@@@
+  <p>here is <span style="color: green">free</span> space</p>
+  @@@@
+  # <!-- raw html start -->
+  # <p>here is <span style="color: green">free</span> space</p>
+  # <!-- raw html end -->
+
+=item comment
+
+  ####
+  block style
+  ####
+  <!--
+  block style
+  -->
+  
+  ### line style
+  <!-- line style -->
+
+=back
 
 =head1 AUTHOR
 
