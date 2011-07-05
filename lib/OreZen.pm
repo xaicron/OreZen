@@ -15,8 +15,8 @@ my $wiki = Text::Wiki::Lite->new;
 $wiki->add_inline(
     q|~~del~~|    => inline(q|~~|, 'del'),
     q|--ins--|    => inline(q|--|, 'ins'),
-    q|::em::|     => inline(q|::|, 'em'),
-    q|''strong''| => inline(q|''|, 'strong'),
+    q|''em''|     => inline(q|''|, 'em'),
+    q|**strong**| => inline(q|**|, 'strong'),
     q|{{code}}|   => inline(['{{', '}}'], 'code', sub { encode_entities shift, q|'"<>&| }),
     'link'        => inline_exclusive([
         qr#\[i:([^\s]+)\]#               => q|<img src="%s" alt="%1$s" title="%1$s" />|,
