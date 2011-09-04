@@ -51,6 +51,7 @@ $wiki->add_block(
     '----'             => hr_block('----', '<hr />'),
     '||...||...||'     => table_block(['||', '*'], { inline => 0 }),
     '- or 1.'          => list_block(['-', => 'ul', qr|\d+\.| => 'ol'], 'li'),
+    'rotate'           => simple_block('////', '////', ['<div style="-webkit-transform: rotate(-2deg)">', '</div>'], { default_block => 1, inline => 1 }),
 #    'center-box'      => simple_block(),
 );
 
