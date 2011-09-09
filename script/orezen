@@ -162,6 +162,10 @@ write here any code
 </pre>
 @@@@
 
+{{{
+write here any code
+}}}
+
 <<<
 
 >>>
@@ -282,10 +286,10 @@ image link
 = strong =
 
 {{{
-''strong word''
+**strong word**
 }}}
 
-''strong word''
+**strong word**
 
 <<<
 
@@ -293,10 +297,10 @@ image link
 = em =
 
 {{{
-::em word::
+''em word''
 }}}
 
-::em word::
+''em word''
 
 <<<
 

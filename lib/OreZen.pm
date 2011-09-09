@@ -32,11 +32,11 @@ $wiki->add_inline(
 
 $wiki->add_block(
     '* h1'             => line_block('*'x1, 'h1', { inline => 1 }),
-    '** h1'            => line_block('*'x2, 'h2', { inline => 1 }),
-    '*** h1'           => line_block('*'x3, 'h3', { inline => 1 }),
-    '**** h1'          => line_block('*'x4, 'h4', { inline => 1 }),
-    '***** h1'         => line_block('*'x5, 'h5', { inline => 1 }),
-    '****** h1'        => line_block('*'x6, 'h6', { inline => 1 }),
+    '** h2'            => line_block('*'x2, 'h2', { inline => 1 }),
+    '*** h3'           => line_block('*'x3, 'h3', { inline => 1 }),
+    '**** h4'          => line_block('*'x4, 'h4', { inline => 1 }),
+    '***** h5'         => line_block('*'x5, 'h5', { inline => 1 }),
+    '****** h6'        => line_block('*'x6, 'h6', { inline => 1 }),
     '= h1 ='           => line_block([('='x1)x2], 'h1', { inline => 1 }),
     '== h2 =='         => line_block([('='x2)x2], 'h2', { inline => 1 }),
     '=== h3 ==='       => line_block([('='x3)x2], 'h3', { inline => 1 }),

@@ -32,6 +32,11 @@ all_pod_files_spelling_ok('lib');
 __DATA__
 OreZen
 
+del
+html
+oreore
+pre
+
 # personal section
 xaicron
 xaicron@cpan.org
