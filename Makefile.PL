@@ -11,7 +11,7 @@ requires 'URI::Escape';
 requires 'URI::Find::UTF8';
 requires 'Class::Load';
 requires 'Regexp::Common';
-requires 'URI::Escape',
+requires 'URI::Escape';
 requires 'HTML::Entities';
 
 install_script 'orezen';
@@ -20,7 +20,5 @@ test_requires 'Test::More', 0.96;
 
 tests join q{ }, map { sprintf 't%s.t', '/*' x $_ } 1..3;
 author_tests 'xt';
-
-auto_set_repository();
 
 WriteAll;
