@@ -7,11 +7,8 @@ requires 'Text::MicroTemplate';
 requires 'File::Slurp';
 requires 'Data::Section::Simple';
 requires 'Getopt::Compact::WithCmd';
-requires 'URI::Escape';
-requires 'URI::Find::UTF8';
 requires 'Class::Load';
 requires 'Regexp::Common';
-requires 'URI::Escape';
 requires 'HTML::Entities';
 
 install_script 'orezen';

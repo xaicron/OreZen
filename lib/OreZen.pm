@@ -5,7 +5,6 @@ use warnings;
 use 5.008_001;
 use Text::Wiki::Lite;
 use Text::Wiki::Lite::Helper::HTML;
-use URI::Escape;
 use Regexp::Common qw(URI);
 use HTML::Entities qw(encode_entities);
 
