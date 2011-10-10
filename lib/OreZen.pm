@@ -27,6 +27,9 @@ $wiki->add_inline(
     'color'       => inline_exclusive([
         qr#%%([^:]+):((?:(?!%%).)*)%%# => q|<span style="color: %s">%s</span>|,
     ]),
+    'size' => inline_exclusive([
+        qr#\[size:([^:]+):([^\]]+)\]# => q|<span style="font-size: %s">%s</span>|,
+    ]),
 );
 
 $wiki->add_block(
@@ -45,11 +48,16 @@ $wiki->add_block(
     'line-comment'     => line_block('###', ['<!--', '-->']),
     '{{{ ... }}}'      => simple_block('{{{', '}}}', 'pre', { escape => 1 }),
     '>>> ... <<<'      => simple_block('>>>', '<<<', 'section', { nest => 1, default_block => 1 }),
+    '->> ... <<-'      => simple_block('->>', '<<-', ['<section class="center">', '</section>'], { nest => 1, default_block => 1 }),
     'block-comment'    => simple_block('####', '####', ['<!--', '-->'], +{ escape => 1 }),
     'raw-html'         => simple_block('@@@@', '@@@@', ['<!-- raw html start -->', '<!-- raw html end -->']),
     '----'             => hr_block('----', '<hr />'),
     '||...||...||'     => table_block(['||', '*'], { inline => 0 }),
     '- or 1.'          => list_block(['-', => 'ul', qr|\d+\.| => 'ol'], 'li'),
+    'caption'          => simple_block('===', '===', [
+        '<section class="center"><div style="position: relative; top: 20%">',
+        '</div></section>',
+    ], { inline => 1 }),
 #    'center-box'      => simple_block(),
 );
 
