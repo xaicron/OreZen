@@ -21,7 +21,7 @@ $wiki->add_inline(
         qr#\[i:([^\s]+)\]#               => q|<img src="%s" alt="%1$s" title="%1$s" />|,
         qr#\[i:([^\s]+) ([^\]]+)\]#      => q|<img src="%s" alt="%s" title="%2$s" />|,
         qr#\[($RE{URI}{HTTP})\]#         => q|<a href="%s">%1$s</a>|,
-        qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => q|<a href="%s">%1$s</a>|,
+        qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => q|<a href="%s">%s</a>|,
         qr#($RE{URI}{HTTP})#             => q|<a href="%s">%1$s</a>|,
     ]),
     'color'       => inline_exclusive([
