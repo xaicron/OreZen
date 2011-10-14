@@ -5,7 +5,6 @@ use warnings;
 use 5.008_001;
 use Text::Wiki::Lite;
 use Text::Wiki::Lite::Helper::HTML;
-use URI::Escape;
 use Regexp::Common qw(URI);
 use HTML::Entities qw(encode_entities);
 
@@ -22,21 +21,24 @@ $wiki->add_inline(
         qr#\[i:([^\s]+)\]#               => q|<img src="%s" alt="%1$s" title="%1$s" />|,
         qr#\[i:([^\s]+) ([^\]]+)\]#      => q|<img src="%s" alt="%s" title="%2$s" />|,
         qr#\[($RE{URI}{HTTP})\]#         => q|<a href="%s">%1$s</a>|,
-        qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => q|<a href="%s">%1$s</a>|,
+        qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => q|<a href="%s">%s</a>|,
         qr#($RE{URI}{HTTP})#             => q|<a href="%s">%1$s</a>|,
     ]),
     'color'       => inline_exclusive([
         qr#%%([^:]+):((?:(?!%%).)*)%%# => q|<span style="color: %s">%s</span>|,
     ]),
+    'size' => inline_exclusive([
+        qr#\[size:([^:]+):([^\]]+)\]# => q|<span style="font-size: %s">%s</span>|,
+    ]),
 );
 
 $wiki->add_block(
     '* h1'             => line_block('*'x1, 'h1', { inline => 1 }),
-    '** h1'            => line_block('*'x2, 'h2', { inline => 1 }),
-    '*** h1'           => line_block('*'x3, 'h3', { inline => 1 }),
-    '**** h1'          => line_block('*'x4, 'h4', { inline => 1 }),
-    '***** h1'         => line_block('*'x5, 'h5', { inline => 1 }),
-    '****** h1'        => line_block('*'x6, 'h6', { inline => 1 }),
+    '** h2'            => line_block('*'x2, 'h2', { inline => 1 }),
+    '*** h3'           => line_block('*'x3, 'h3', { inline => 1 }),
+    '**** h4'          => line_block('*'x4, 'h4', { inline => 1 }),
+    '***** h5'         => line_block('*'x5, 'h5', { inline => 1 }),
+    '****** h6'        => line_block('*'x6, 'h6', { inline => 1 }),
     '= h1 ='           => line_block([('='x1)x2], 'h1', { inline => 1 }),
     '== h2 =='         => line_block([('='x2)x2], 'h2', { inline => 1 }),
     '=== h3 ==='       => line_block([('='x3)x2], 'h3', { inline => 1 }),
@@ -46,12 +48,16 @@ $wiki->add_block(
     'line-comment'     => line_block('###', ['<!--', '-->']),
     '{{{ ... }}}'      => simple_block('{{{', '}}}', 'pre', { escape => 1 }),
     '>>> ... <<<'      => simple_block('>>>', '<<<', 'section', { nest => 1, default_block => 1 }),
+    '->> ... <<-'      => simple_block('->>', '<<-', ['<section class="center">', '</section>'], { nest => 1, default_block => 1 }),
     'block-comment'    => simple_block('####', '####', ['<!--', '-->'], +{ escape => 1 }),
     'raw-html'         => simple_block('@@@@', '@@@@', ['<!-- raw html start -->', '<!-- raw html end -->']),
     '----'             => hr_block('----', '<hr />'),
     '||...||...||'     => table_block(['||', '*'], { inline => 0 }),
     '- or 1.'          => list_block(['-', => 'ul', qr|\d+\.| => 'ol'], 'li'),
-    'rotate'           => simple_block('////', '////', ['<div style="-webkit-transform: rotate(-2deg)">', '</div>'], { default_block => 1, inline => 1 }),
+    'caption'          => simple_block('===', '===', [
+        '<section class="center"><div style="position: relative; top: 20%">',
+        '</div></section>',
+    ], { inline => 1 }),
 #    'center-box'      => simple_block(),
 );
 

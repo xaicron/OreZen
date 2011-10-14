@@ -277,6 +277,7 @@ h1, h2, h3 {
 }
 
 h1 {
+    text-align: center;
     font-size: 150%;
     border-bottom: 2px dashed #fff;
     padding-left: 0.2em;
@@ -299,16 +300,20 @@ p {
 
 ul {
     list-style-type: disc;
-    font-size: 80%;
     margin-left: 2em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
 }
 
 ol {
     list-style-type: decimal;
-    font-size: 80%;
     margin-left: 2em;
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+
+section > ul, section > ol {
+    font-size: 80%;
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
@@ -345,31 +350,31 @@ ol {
 .next {
     top: -100%;
     height: 88%;
-    -moz-transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
+#    -moz-transition: all 0.5s ease-in-out;
+#    -webkit-transition: all 0.5s ease-in-out;
+#    -o-transition: all 0.5s ease-in-out;
+#    -ms-transition: all 0.5s ease-in-out;
+#    transition: all 0.5s ease-in-out;
 }
 
 .prev {
     bottom: -100%;
     height: 88%;
-    -moz-transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
+#    -moz-transition: all 0.5s ease-in-out;
+#    -webkit-transition: all 0.5s ease-in-out;
+#    -o-transition: all 0.5s ease-in-out;
+#    -ms-transition: all 0.5s ease-in-out;
+#    transition: all 0.5s ease-in-out;
 }
 
 .view {
     height: 88%;
     opacity: 1;
-    -moz-transition: all 0.5s ease-in-out;
-    -webkit-transition: all 0.5s ease-in-out;
-    -o-transition: all 0.5s ease-in-out;
-    -ms-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
+#    -moz-transition: all 0.5s ease-in-out;
+#    -webkit-transition: all 0.5s ease-in-out;
+#    -o-transition: all 0.5s ease-in-out;
+#    -ms-transition: all 0.5s ease-in-out;
+#    transition: all 0.5s ease-in-out;
 }
 
 .invisible {
@@ -394,11 +399,11 @@ ol {
     position: relative;
     border: 1px solid #000;
 /*    overflow: hidden; */
-    -moz-transition: opacity 0.3s ease-in-out;
-    -webkit-transition: opacity 0.3s ease-in-out;
-    -o-transition: opacity 0.3s ease-in-out;
-    -ms-transition: opacity 0.3s ease-in-out;
-    transition: opacity 0.3s ease-in-out;
+#    -moz-transition: opacity 0.3s ease-in-out;
+#    -webkit-transition: opacity 0.3s ease-in-out;
+#    -o-transition: opacity 0.3s ease-in-out;
+#    -ms-transition: opacity 0.3s ease-in-out;
+#    transition: opacity 0.3s ease-in-out;
 }
 .list:hover {
     opacity: 1;
@@ -407,6 +412,10 @@ ol {
 .focus {
     opacity: 1;
     border: 1px solid #3f3;
+}
+
+.center {
+    text-align: center;
 }
 
 a {
@@ -422,10 +431,12 @@ a:visited  {
 pre {
     margin: 1em;
     padding: 0.5em;
-    font-size: 80%;
+    font-size: 45%;
     border: 2px solid #fff;
     color: #000;
     background-color: #fff;
+    font-family: 'Monaco' monospace;
+    text-shadow: none;
 }
 
 table {
