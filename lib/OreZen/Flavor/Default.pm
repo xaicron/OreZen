@@ -20,6 +20,7 @@ __DATA__
 <body>
 <?= $content ?>
 <div id="dummy"></div>
+<div id="date"></div>
 <div id="page"></div>
 <div id="help">
 <p>j or &rarr;: next</p>
@@ -49,7 +50,7 @@ __DATA__
 var width = 0;
 var listView = false;
 var imgTags = document.getElementsByTagName('img');
-var fontTimmer = setInterval(function(){
+var fontTimer = setInterval(function(){
     if (!listView && width != document.documentElement.clientWidth) {
         width = document.documentElement.clientWidth;
         document.body.style.fontSize = width / 5 + '%';
@@ -57,6 +58,9 @@ var fontTimmer = setInterval(function(){
             imgTags[i].style.maxWidth = width * 0.8 + 'px';
         }
     }
+}, 100);
+var dateTimer = setInterval(function() {
+    document.getElementById('date').innerHTML = (new Date()).toLocaleString();
 }, 100);
 
 var slides = [];
@@ -117,6 +121,7 @@ document.onkeydown = function(e) {
             replaceClass(slides[i], [NC, PC, VC, 'focus'], 'invisible');
         }
         document.getElementById('page').style.display = 'none';
+        document.getElementById('date').style.display = 'none';
         setTimeout(function() {
             width = null;
             document.body.style.fontSize = '3%';
@@ -159,6 +164,7 @@ document.onkeydown = function(e) {
 setTimeout(function(){
     var matched;
     document.getElementById('page').style.display = 'block';
+    document.getElementById('date').style.display = 'block';
     if (matched = location.hash.match(/^#(\d+)$/)){
         current = +matched[1] - 1;
         for (var i = 0; i < current && slides[i]; i++){
@@ -341,6 +347,18 @@ section > ul, section > ol {
     font-size: 60%;
     right: 4.5%;
     bottom: 3%;
+    font-weight: bold;
+    display: block;
+    text-shadow: 3px 3px 5px #000;
+    opacity: 0.7;
+}
+
+#date {
+    color: #fff;
+    position: absolute;
+    font-size: 40%;
+    left: 4.5%;
+    bottom: 3.2%;
     font-weight: bold;
     display: block;
     text-shadow: 3px 3px 5px #000;
