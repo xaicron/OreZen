@@ -246,6 +246,7 @@ var countTimer = setInterval(function(){
 
 })();
 @@ static/css/style.css
+
 /* reset styles */
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,article,section {
     padding:0;
@@ -253,7 +254,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,
 }
 
 body {
-    background-color: #000;
+    background-color: #5b5;
     position: absolute;
     top: 0;
     right: 0;
@@ -263,18 +264,18 @@ body {
 
 body > section {
     position: absolute;
-    top: 5%;
-    bottom: 5%;
-    left: 3%;
-    background: #333;
+    top: 3%;
+    bottom: 3%;
+    left: 1%;
+    background: rgba(48,48,48,0.3);
     color: #fff;
-    text-shadow: rgba(0,0,0,0.1) 2px 2px;
+    text-shadow: 3px 3px 5px #000;
     letter-spacing: 0.15em;
-    padding: 1%;
+    padding: 0%;
     height: 0%;
     overflow: auto;
-    width: 92%;
-    border-radius: 20px;
+    width: 98%;
+/*    border-radius: 20px; */
     opacity: 0;
 }
 
@@ -345,8 +346,8 @@ section > ul, section > ol {
     color: #fff;
     position: absolute;
     font-size: 60%;
-    right: 4.5%;
-    bottom: 3%;
+    right: 2.5%;
+    bottom: 1%;
     font-weight: bold;
     display: block;
     text-shadow: 3px 3px 5px #000;
@@ -357,8 +358,8 @@ section > ul, section > ol {
     color: #fff;
     position: absolute;
     font-size: 40%;
-    left: 4.5%;
-    bottom: 3.2%;
+    left: 2%;
+    bottom: 1%;
     font-weight: bold;
     display: block;
     text-shadow: 3px 3px 5px #000;
@@ -367,32 +368,17 @@ section > ul, section > ol {
 
 .next {
     top: -100%;
-    height: 88%;
-#    -moz-transition: all 0.5s ease-in-out;
-#    -webkit-transition: all 0.5s ease-in-out;
-#    -o-transition: all 0.5s ease-in-out;
-#    -ms-transition: all 0.5s ease-in-out;
-#    transition: all 0.5s ease-in-out;
+    height: 95%;
 }
 
 .prev {
     bottom: -100%;
-    height: 88%;
-#    -moz-transition: all 0.5s ease-in-out;
-#    -webkit-transition: all 0.5s ease-in-out;
-#    -o-transition: all 0.5s ease-in-out;
-#    -ms-transition: all 0.5s ease-in-out;
-#    transition: all 0.5s ease-in-out;
+    height: 95%;
 }
 
 .view {
-    height: 88%;
+    height: 95%;
     opacity: 1;
-#    -moz-transition: all 0.5s ease-in-out;
-#    -webkit-transition: all 0.5s ease-in-out;
-#    -o-transition: all 0.5s ease-in-out;
-#    -ms-transition: all 0.5s ease-in-out;
-#    transition: all 0.5s ease-in-out;
 }
 
 .invisible {
@@ -401,7 +387,7 @@ section > ul, section > ol {
 
 .up {
     top: -100%;
-    height: 88%;
+    height: 95%;
 }
 
 .list {
@@ -416,12 +402,6 @@ section > ul, section > ol {
     border-radius: 20px;
     position: relative;
     border: 1px solid #000;
-/*    overflow: hidden; */
-#    -moz-transition: opacity 0.3s ease-in-out;
-#    -webkit-transition: opacity 0.3s ease-in-out;
-#    -o-transition: opacity 0.3s ease-in-out;
-#    -ms-transition: opacity 0.3s ease-in-out;
-#    transition: opacity 0.3s ease-in-out;
 }
 .list:hover {
     opacity: 1;
@@ -440,10 +420,10 @@ a {
     text-decoration: none;
 }
 a:link {
-    color: #0f0;
+    color: #ff4;
 }
 a:visited  {
-    color: #0f0;
+    color: #ff4;
 }
 
 pre {
@@ -455,6 +435,7 @@ pre {
     background-color: #fff;
     font-family: 'Monaco' monospace;
     text-shadow: none;
+    word-wrap: break-word;
 }
 
 table {
