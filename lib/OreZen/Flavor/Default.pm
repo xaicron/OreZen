@@ -428,7 +428,7 @@ a:visited  {
 
 pre {
     margin: 1em;
-    padding: 0.5em;
+    padding: 0.5em !important;
     font-size: 45%;
     border: 2px solid #fff;
     color: #000;
@@ -464,6 +464,15 @@ td {
     border-width: 0 0 2px 2px;
     background: #fff;
     text-align: center;
+}
+
+code {
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 5px;
+    color: #33e;
+    text-shadow: 3px 3px 5px #999;
+    font-weight: bold;
 }
 
 #dummy {
