@@ -150,6 +150,8 @@ document.onkeydown = function(e) {
                 var className = stash[i].class;
                 replaceClass(slides[i], ['invisible', 'up'], className);
             }
+            document.getElementById('page').style.display = null;
+            document.getElementById('date').style.display = null;
         }, 500);
     }
     else if ((key === KEYBORD.O || key === KEYBORD.Enter) && listView === true) {
