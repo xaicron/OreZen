@@ -10,6 +10,11 @@ use HTML::Entities qw(encode_entities);
 
 our $VERSION = '0.01';
 
+my $URL_REGEXP = do {
+    my $regexp = $RE{URI}{HTTP}{-scheme => 'https?'};
+    qr"$regexp(?:#(?:[A-Za-z0-9\-._~]|%[A-F0-9]{2}|[!\$&'()*+,;=]|[:@]|[/?])*)?";
+};
+
 my $wiki = Text::Wiki::Lite->new;
 $wiki->add_inline(
     q|~~del~~|    => inline(q|~~|, 'del'),
@@ -17,12 +22,32 @@ $wiki->add_inline(
     q|''em''|     => inline(q|''|, 'em'),
     q|**strong**| => inline(q|**|, 'strong'),
     q|{{code}}|   => inline(['{{', '}}'], 'code', sub { encode_entities shift, q|'"<>&| }),
-    'link'        => inline_exclusive([
-        qr#\[i:([^\s]+)\]#               => q|<img src="%s" alt="%1$s" title="%1$s" />|,
-        qr#\[i:([^\s]+) ([^\]]+)\]#      => q|<img src="%s" alt="%s" title="%2$s" />|,
-        qr#\[($RE{URI}{HTTP})\]#         => q|<a href="%s">%1$s</a>|,
-        qr#\[($RE{URI}{HTTP}) ([^\]]+)]# => q|<a href="%s">%s</a>|,
-        qr#($RE{URI}{HTTP})#             => q|<a href="%s">%1$s</a>|,
+    link          => inline_exclusive([
+        qr#\[i:([^\s]+)\]#               => sub {
+            my ($url, $extra) = build_extra_param_from_url(shift);
+            sprintf q|<img src="%s" alt="%1$s" title="%1$s" %s/>|, $url, $extra;
+        },
+        qr#\[i:([^\s]+) ([^\]]+)\]#      => sub {
+            my ($url, $extra) = build_extra_param_from_url(shift);
+            my $alt = shift;
+            q|<img src="%s" alt="%s" title="%2$s" %s/>|, $url, $alt, $extra;
+        },
+        qr#\[($URL_REGEXP)\]#         => q|<a href="%s">%1$s</a>|,
+        qr#\[($URL_REGEXP) ([^\]]+)]# => q|<a href="%s">%2$s</a>|,
+        qr#($URL_REGEXP)#             => q|<a href="%s">%1$s</a>|,
+        qr#\[cpan:([^\s]+)\]#            => sub {
+            my $module = shift;
+            (my $dist = $module) =~ s/-/::/g;
+            sprintf q|<a href="https://metacpan.org/module/%s">%s</a>|, $dist, $module;
+        },
+        qr#\[twitter:\@?([_\w\d]+)\]# => sub {
+            my ($twitter_id) = @_;
+            sprintf q|<a href="http://twitter.com/%s">@%1$s</a>|, $twitter_id;
+        },
+        qr#\[twitter:\@?([_\w\d]+) ([^\s]+)\]# => sub {
+            my ($twitte_id, $stuff) = @_;
+            sprintf q|<a href="http://twitter.com/%s">%s</a>|, $twitte_id, $stuff;
+        },
     ]),
     'color'       => inline_exclusive([
         qr#%%([^:]+):((?:(?!%%).)*)%%# => q|<span style="color: %s">%s</span>|,
@@ -70,6 +95,18 @@ sub format {
     return $wiki->format(@_);
 }
 
+sub build_extra_param_from_url {
+    my ($url) = @_;
+    my $extra = '';
+    return $url, $extra unless $url =~ /\@/;
+
+    ($url, my $params) = split '@', $url;
+
+    # e.g. @widhth=192px,height=300px
+    $params = { map { split '=', $_, 2 } split ',', $params };
+    $extra = join ' ', map { sprintf '%s="%s"', $_, $params->{$_} } sort keys %$params;
+    return $url, $extra;
+}
 1;
 __END__
 
