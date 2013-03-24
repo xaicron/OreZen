@@ -418,6 +418,11 @@ section > ul, section > ol {
     text-align: center;
 }
 
+.align-center {
+    position: relative;
+    top: 30%;
+}
+
 a {
     text-decoration: none;
 }

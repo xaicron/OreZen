@@ -74,6 +74,7 @@ $wiki->add_block(
     '{{{ ... }}}'      => simple_block('{{{', '}}}', 'pre', { escape => 1 }),
     '>>> ... <<<'      => simple_block('>>>', '<<<', 'section', { nest => 1, default_block => 1 }),
     '->> ... <<-'      => simple_block('->>', '<<-', ['<section class="center">', '</section>'], { nest => 1, default_block => 1 }),
+    'vvv ... ^^^'      => simple_block('vvv', '^^^', ['<section class="center"><div class="align-center">', '</div></section>'], { nest => 1, default_block => 1 }),
     'block-comment'    => simple_block('####', '####', ['<!--', '-->'], +{ escape => 1 }),
     'raw-html'         => simple_block('@@@@', '@@@@', ['<!-- raw html start -->', '<!-- raw html end -->']),
     '----'             => hr_block('----', '<hr />'),
