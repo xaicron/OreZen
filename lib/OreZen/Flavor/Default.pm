@@ -424,13 +424,13 @@ section > ul, section > ol {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: underline;
 }
 a:link {
-    color: #ff4;
+    color: #fa5;
 }
 a:visited  {
-    color: #ff4;
+    color: #fa5;
 }
 
 pre {
