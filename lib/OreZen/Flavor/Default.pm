@@ -16,6 +16,7 @@ __DATA__
 <title><?= $title ?></title>
 <link rel="stylesheet" href="static/css/style.css" />
 <link rel="stylesheet" href="static/css/pretty.css" />
+<meta name="viewport" content="width=devide-width,initial-scale=0.8,user-scalable=no" />
 </head>
 <body>
 <?= $content ?>
