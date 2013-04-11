@@ -15,10 +15,14 @@ sub load {
 }
 
 sub gen {
-    my ($class) = @_;
+    my ($class, %args) = @_;
+    my $exclude_map = {
+        map { $_ => 1 } @{ $args{excludes} || [] },
+    };
     my $render = Data::Section::Simple->new($class);
     my $data = $render->get_data_section();
-    for my $path (keys %$data) { 
+    for my $path (keys %$data) {
+        next if $exclude_map->{$path};
         $class->util->try_mkpath($path);
         $class->util->write($path, $data->{$path});
     }

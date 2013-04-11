@@ -16,6 +16,7 @@ __DATA__
 <title><?= $title ?></title>
 <link rel="stylesheet" href="static/css/style.css" />
 <link rel="stylesheet" href="static/css/pretty.css" />
+<link rel="stylesheet" href="static/css/custom.css" />
 <meta name="viewport" content="width=devide-width,initial-scale=0.8,user-scalable=no" />
 </head>
 <body>
@@ -544,3 +545,6 @@ code {
 @@ static/css/pretty.css
 /* pretty */
 .str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun{color:#660}.pln{color:#000}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec{color:#606}pre.prettyprint{padding:2px;border:1px solid #888}ol.linenums{margin-top:0;margin-bottom:0}li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8{list-style:none}li.L1,li.L3,li.L5,li.L7,li.L9{background:#eee}@media print{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun{color:#440}.pln{color:#000}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}
+
+@@ static/css/custom.css
+/* your custom style */
