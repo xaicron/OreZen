@@ -111,10 +111,10 @@ document.onkeydown = function(e) {
     }
     var key = e.keyCode;
     console.log(key);
-    if ((key === KEYBORD.J || key === KEYBORD.Right) && slides[current+1]) {
+    if (key === KEYBORD.J || key === KEYBORD.Right) {
         listView === false ? next() : nextlist();
     }
-    else if ((key === KEYBORD.K || key === KEYBORD.Left) && slides[current-1]) {
+    else if (key === KEYBORD.K || key === KEYBORD.Left) {
         listView === false ? prev() : prevlist();
     }
     else if ((key === KEYBORD.H || key === KEYBORD.Up) && listView === false) {
